@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso de Python - Panel Principal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        // Variable para controlar si ya hay una alerta visible
+        let alertaVisible = false;
+
+        // Deshabilitar clic derecho
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            mostrarAlertaSeguridad('El clic derecho no está permitido en esta aplicación.');
+        });
+
+        // Deshabilitar F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+        document.addEventListener('keydown', (e) => {
+            if (
+                e.key === 'F12' || 
+                (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j')) ||
+                (e.ctrlKey && (e.key === 'U' || e.key === 'u'))
+            ) {
+                e.preventDefault();
+                mostrarAlertaSeguridad('Las herramientas de desarrollo no están permitidas en esta aplicación.');
+            }
+        });
+
+        // Deshabilitar Ctrl+P
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && (e.key === 'p' || e.key === 'P')) {
+                e.preventDefault();
+                mostrarAlertaSeguridad('La impresión no está permitida en esta aplicación.');
+            }
+        });
+
+        function mostrarAlertaSeguridad(mensaje) {
+            // Si ya hay una alerta visible, no crear otra
+            if (alertaVisible) return;
+            
+            alertaVisible = true;
+
+            const alerta = document.createElement('div');
+            alerta.id = 'alertaSeguridad';
+            alerta.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: rgba(0, 0, 0, 0.95);
+                color: #0080ff;
+                padding: 20px;
+                border: 2px solid #0080ff;
+                border-radius: 10px;
+                font-family: 'Inter', sans-serif;
+                z-index: 10000;
+                text-align: center;
+                box-shadow: 0 0 20px rgba(0, 128, 255, 0.3);
+                animation: aparecer 0.3s ease;
+            `;
+
+            const mensajeTexto = document.createElement('p');
+            mensajeTexto.textContent = mensaje;
+            mensajeTexto.style.margin = '0 0 15px 0';
+
+            const botonCerrar = document.createElement('button');
+            botonCerrar.textContent = 'Entendido';
+            botonCerrar.style.cssText = `
+                background: transparent;
+                border: 1px solid #0080ff;
+                color: #0080ff;
+                padding: 8px 16px;
+                cursor: pointer;
+                border-radius: 5px;
+                font-family: 'Inter', sans-serif;
+                transition: all 0.3s ease;
+            `;
+
+            botonCerrar.onmouseover = () => {
+                botonCerrar.style.background = '#0080ff';
+                botonCerrar.style.color = '#000';
+            };
+
+            botonCerrar.onmouseout = () => {
+                botonCerrar.style.background = 'transparent';
+                botonCerrar.style.color = '#0080ff';
+            };
+
+            const overlay = document.createElement('div');
+            overlay.id = 'overlaySeguridad';
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                z-index: 9999;
+            `;
+
+            botonCerrar.onclick = () => {
+                document.body.removeChild(alerta);
+                document.body.removeChild(overlay);
+                alertaVisible = false;
+            };
+
+            alerta.appendChild(mensajeTexto);
+            alerta.appendChild(botonCerrar);
+            document.body.appendChild(overlay);
+            document.body.appendChild(alerta);
+
+            // Mensaje de voz (solo si no hay otro mensaje reproduciéndose)
+            if (!window.speechSynthesis.speaking) {
+                const mensajeVoz = new SpeechSynthesisUtterance();
+                mensajeVoz.text = mensaje;
+                mensajeVoz.lang = 'es-ES';
+                window.speechSynthesis.speak(mensajeVoz);
+            }
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0080ff 0%, #003366 100%);
+            background-attachment: fixed;
+            color: #ffffff;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #0080ff, #66b3ff);
+            z-index: 1001;
+            transition: width 0.3s ease;
+        }
+
+        .cabecera {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid rgba(0, 128, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .titulo-bienvenida {
+            color: #0080ff;
+            font-weight: 700;
+            font-size: 1.5rem;
+            text-shadow: 0 0 10px rgba(0, 128, 255, 0.5);
+        }
+
+        .usuario-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .usuario-nombre {
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .cerrar-sesion {
+            background: rgba(229, 62, 62, 0.2);
+            border: 1px solid rgba(229, 62, 62, 0.5);
+            color: #ff6b6b;
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .cerrar-sesion:hover {
+            background: #e53e3e;
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(229, 62, 62, 0.3);
+            transform: translateY(-1px);
+        }
+
+        .contenedor {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .panel-principal {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .lista-semanas {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid rgba(0, 128, 255, 0.3);
+            backdrop-filter: blur(10px);
+            height: fit-content;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .semana {
+            margin-bottom: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 128, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .semana:hover {
+            border-color: rgba(0, 128, 255, 0.4);
+            box-shadow: 0 4px 20px rgba(0, 128, 255, 0.1);
+        }
+
+        .semana-titulo {
+            padding: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 128, 255, 0.1);
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(0, 128, 255, 0.2);
+        }
+
+        .semana-titulo:hover {
+            background: rgba(0, 128, 255, 0.2);
+        }
+
+        .semana-titulo h2 {
+            color: #0080ff;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .semana-titulo i {
+            color: #0080ff;
+            transition: transform 0.3s ease;
+        }
+
+        .semana.activa .semana-titulo i {
+            transform: rotate(180deg);
+        }
+
+        .semana-contenido {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .semana.activa .semana-contenido {
+            max-height: 2000px;
+        }
+
+        .clase-card {
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(0, 128, 255, 0.1);
+            display: flex;
+            align-items: center;
+        }
+
+        .clase-card:last-child {
+            border-bottom: none;
+        }
+
+        .clase-card:hover {
+            background: rgba(0, 128, 255, 0.1);
+            padding-left: 1.5rem;
+        }
+
+        .clase-card.activa {
+            background: rgba(0, 128, 255, 0.2);
+            border-left: 4px solid #0080ff;
+            padding-left: 1.5rem;
+        }
+
+        .clase-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+
+        .clase-titulo {
+            color: #ffffff;
+            font-size: 0.95rem;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        .clase-fecha {
+            color: #66b3ff;
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        .contenido-reproduccion {
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 1px solid rgba(0, 128, 255, 0.3);
+            backdrop-filter: blur(10px);
+            height: fit-content;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .video-contenedor {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* Ratio 16:9 */
+            margin-bottom: 2rem;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid rgba(0, 128, 255, 0.3);
+        }
+
+        .video-contenedor iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .material-seccion {
+            text-align: center;
+        }
+
+        .material-titulo {
+            color: #0080ff;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px rgba(0, 128, 255, 0.3);
+        }
+
+        .material-enlace {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            width: 100%;
+            padding: 1.2rem;
+            background: transparent;
+            border: 2px solid #0080ff;
+            color: #0080ff;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .material-enlace:hover {
+            background: #0080ff;
+            color: #000000;
+            box-shadow: 0 4px 20px rgba(0, 128, 255, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Modales */
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 999;
+        }
+
+        .alerta-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.95);
+            border: 2px solid #0080ff;
+            border-radius: 10px;
+            padding: 2rem;
+            z-index: 1000;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 128, 255, 0.3);
+            max-width: 90%;
+            width: 400px;
+        }
+
+        .alerta-mensaje {
+            color: #0080ff;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        .alerta-botones {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .alerta-boton {
+            padding: 0.7rem 1.5rem;
+            border: 1px solid #0080ff;
+            background: transparent;
+            color: #0080ff;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+        }
+
+        .alerta-boton:hover {
+            background: #0080ff;
+            color: #000000;
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 128, 255, 0.9);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 128, 255, 0.3);
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 128, 255, 0.4);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .panel-principal {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contenido-reproduccion {
+                position: relative;
+                top: 0;
+                order: -1;
+            }
+
+            .lista-semanas {
+                max-height: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .contenedor {
+                padding: 1rem;
+            }
+
+            .cabecera {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+
+            .titulo-bienvenida {
+                font-size: 1.2rem;
+                text-align: center;
+            }
+
+            .usuario-info {
+                justify-content: center;
+                width: 100%;
+            }
+
+            .panel-principal {
+                gap: 1.5rem;
+            }
+
+            .lista-semanas,
+            .contenido-reproduccion {
+                padding: 1rem;
+            }
+
+            .clase-card {
+                min-height: 60px;
+            }
+
+            .semana-titulo {
+                min-height: 60px;
+            }
+
+            .alerta-modal {
+                width: 95%;
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contenedor {
+                padding: 0.5rem;
+            }
+
+            .cabecera {
+                padding: 0.8rem;
+            }
+
+            .titulo-bienvenida {
+                font-size: 1rem;
+            }
+
+            .usuario-info {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+
+            .cerrar-sesion {
+                padding: 0.6rem 1rem;
+                font-size: 0.85rem;
+            }
+
+            .clase-titulo {
+                font-size: 0.85rem;
+            }
+
+            .clase-fecha {
+                font-size: 0.75rem;
+            }
+        }
+
+        /* Animaciones */
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -60%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        /* Scrollbar personalizado */
+        .lista-semanas::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .lista-semanas::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 3px;
+        }
+
+        .lista-semanas::-webkit-scrollbar-thumb {
+            background: #0080ff;
+            border-radius: 3px;
+        }
+
+        .lista-semanas::-webkit-scrollbar-thumb:hover {
+            background: #66b3ff;
+        }
+    </style>
+</head>
+<body>
+    <!-- Indicador de progreso de scroll -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+    
+    <header class="cabecera">
+        <h1 class="titulo-bienvenida">Curso de Python - Panel de Control</h1>
+        <div class="usuario-info">
+            <span class="usuario-nombre" id="nombreUsuario">Usuario</span>
+            <button class="cerrar-sesion" onclick="cerrarSesion()">
+                <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+            </button>
+        </div>
+    </header>
+
+    <div class="contenedor">
+        <div class="panel-principal">
+            <div class="lista-semanas" id="semanasContainer">
+                <!-- El contenido se cargará dinámicamente -->
+            </div>
+            <div class="contenido-reproduccion" id="contenidoReproduccion">
+                <div class="video-contenedor">
+                    <iframe id="videoActual" 
+                            src="https://www.youtube.com/embed/-bFATR4SKPo?si=MpQDKCKQYOkR5OdC" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="material-seccion">
+                    <h3 class="material-titulo">Material de Clase</h3>
+                    <a href="#" class="material-enlace" id="materialActual">
+                        <i class="fas fa-book"></i>
+                        Ver Material
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    <div class="alerta-modal" id="alertaModal">
+        <div class="alerta-mensaje">
+            El material está disponible exclusivamente para ti con el correo registrado: 
+            <strong id="usuarioCorreo"></strong>
+        </div>
+        <div class="alerta-botones">
+            <button class="alerta-boton" onclick="confirmarAcceso()">Continuar</button>
+            <button class="alerta-boton" onclick="cancelarAcceso()">Cancelar</button>
+        </div>
+    </div>
+
+    <!-- Botón flotante de scroll hacia arriba -->
+    <button class="scroll-top" id="scrollTopBtn" onclick="scrollToTop()">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script>
+        let linkMaterialActual = '';
+
+        function abrirMaterial(link, usuario) {
+            linkMaterialActual = link;
+            document.getElementById('usuarioCorreo').textContent = usuario;
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('alertaModal').style.display = 'block';
+
+            // Mensaje de voz
+            const mensajeVoz = new SpeechSynthesisUtterance();
+            mensajeVoz.text = `El material está disponible exclusivamente para ti con el correo registrado: ${usuario}`;
+            mensajeVoz.lang = 'es-ES';
+            window.speechSynthesis.speak(mensajeVoz);
+        }
+
+        function confirmarAcceso() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('alertaModal').style.display = 'none';
+            window.open(linkMaterialActual, '_blank');
+        }
+
+        function cancelarAcceso() {
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('alertaModal').style.display = 'none';
+            linkMaterialActual = '';
+        }
+
+        async function cargarGrabaciones() {
+            try {
+                const [grabacionesResponse, materialesResponse] = await Promise.all([
+                    fetch('../data/grabaciones.json'),
+                    fetch('../data/materiales.json')
+                ]);
+                
+                const grabaciones = await grabacionesResponse.json();
+                const materiales = await materialesResponse.json();
+                const container = document.getElementById('semanasContainer');
+
+                grabaciones.semanas.forEach((semana, index) => {
+                    const semanaElement = document.createElement('div');
+                    semanaElement.className = 'semana';
+                    semanaElement.innerHTML = `
+                        <div class="semana-titulo" onclick="toggleSemana(this)">
+                            <h2>Semana ${semana.numero}</h2>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="semana-contenido">
+                            ${semana.grabaciones.map((grab, i) => `
+                                <div class="clase-card" onclick="seleccionarClase(this, '${grab.link}', '${materiales.semanas[index].materiales[i].link}')">
+                                    <div class="clase-info">
+                                        <div class="clase-titulo">${grab.titulo}</div>
+                                        <div class="clase-fecha">${grab.dia}</div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                    container.appendChild(semanaElement);
+                });
+
+                // Abrir la primera semana por defecto
+                const primeraSemana = container.querySelector('.semana');
+                if (primeraSemana) {
+                    primeraSemana.classList.add('activa');
+                }
+
+            } catch (error) {
+                console.error('Error al cargar los datos:', error);
+            }
+        }
+
+        function toggleSemana(elemento) {
+            const semana = elemento.parentElement;
+            const estaActiva = semana.classList.contains('activa');
+            
+            document.querySelectorAll('.semana').forEach(s => s.classList.remove('activa'));
+            
+            if (!estaActiva) {
+                semana.classList.add('activa');
+            }
+        }
+
+        function seleccionarClase(elemento, videoLink, materialLink) {
+            document.querySelectorAll('.clase-card').forEach(card => 
+                card.classList.remove('activa'));
+            
+            elemento.classList.add('activa');
+            
+            const videoFrame = document.getElementById('videoActual');
+            const materialEnlace = document.getElementById('materialActual');
+            
+            videoFrame.src = videoLink;
+            
+            // En móviles, hacer scroll al video
+            if (window.innerWidth <= 1200) {
+                const contenidoReproduccion = document.getElementById('contenidoReproduccion');
+                contenidoReproduccion.scrollIntoView({ behavior: 'smooth' });
+            }
+            
+            materialEnlace.onclick = (e) => {
+                e.preventDefault();
+                abrirMaterial(materialLink, document.getElementById('nombreUsuario').textContent);
+            };
+        }
+
+        window.onload = function() {
+            const params = new URLSearchParams(window.location.search);
+            const usuario = params.get('usuario');
+            if (usuario) {
+                document.getElementById('nombreUsuario').textContent = usuario;
+                
+                const mensajeVoz = new SpeechSynthesisUtterance();
+                mensajeVoz.text = `Bienvenido al curso de Python, a continuación podrás encontrar las grabaciones de las clases y material de estudio.`;
+                mensajeVoz.lang = 'es-ES';
+                mensajeVoz.volume = 1;
+                mensajeVoz.pitch = 1;
+                mensajeVoz.rate = 0.9;
+                
+                window.speechSynthesis.speak(mensajeVoz);
+            }
+            
+            cargarGrabaciones();
+        }
+
+        function cerrarSesion() {
+            const mensajeVoz = new SpeechSynthesisUtterance();
+            mensajeVoz.text = "Cerrando sesión. Hasta pronto.";
+            mensajeVoz.lang = 'es-ES';
+            window.speechSynthesis.speak(mensajeVoz);
+            
+            setTimeout(() => {
+                window.location.href = '../index.html';
+            }, 1500);
+        }
+
+        // Funcionalidad del botón scroll hacia arriba y progreso de scroll
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Mostrar/ocultar botón de scroll y actualizar progreso
+        window.addEventListener('scroll', function() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollProgress = (scrollTop / scrollHeight) * 100;
+            
+            // Actualizar barra de progreso
+            const progressBar = document.getElementById('scrollProgress');
+            if (progressBar) {
+                progressBar.style.width = scrollProgress + '%';
+            }
+            
+            // Mostrar/ocultar botón de scroll hacia arriba
+            const scrollTopBtn = document.getElementById('scrollTopBtn');
+            if (scrollTopBtn) {
+                if (scrollTop > 300) {
+                    scrollTopBtn.classList.add('visible');
+                } else {
+                    scrollTopBtn.classList.remove('visible');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

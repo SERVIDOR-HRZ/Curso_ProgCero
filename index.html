@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso de Python - Iniciar Sesión</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        // Variable para controlar si ya hay una alerta visible
+        let alertaVisible = false;
+
+        // Deshabilitar clic derecho
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            mostrarAlertaSeguridad('El clic derecho no está permitido en esta aplicación.');
+        });
+
+        // Deshabilitar F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U
+        document.addEventListener('keydown', (e) => {
+            if (
+                e.key === 'F12' || 
+                (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j')) ||
+                (e.ctrlKey && (e.key === 'U' || e.key === 'u'))
+            ) {
+                e.preventDefault();
+                mostrarAlertaSeguridad('Las herramientas de desarrollo no están permitidas en esta aplicación.');
+            }
+        });
+
+        // Deshabilitar Ctrl+P
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && (e.key === 'p' || e.key === 'P')) {
+                e.preventDefault();
+                mostrarAlertaSeguridad('La impresión no está permitida en esta aplicación.');
+            }
+        });
+
+        function mostrarAlertaSeguridad(mensaje) {
+            // Si ya hay una alerta visible, no crear otra
+            if (alertaVisible) return;
+            
+            alertaVisible = true;
+
+            const alerta = document.createElement('div');
+            alerta.id = 'alertaSeguridad';
+            alerta.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                background: rgba(0, 0, 0, 0.95);
+                color: #0080ff;
+                padding: 20px;
+                border: 2px solid #0080ff;
+                border-radius: 10px;
+                font-family: 'Inter', sans-serif;
+                z-index: 10000;
+                text-align: center;
+                box-shadow: 0 0 20px rgba(0, 128, 255, 0.3);
+                animation: aparecer 0.3s ease;
+            `;
+
+            const mensajeTexto = document.createElement('p');
+            mensajeTexto.textContent = mensaje;
+            mensajeTexto.style.margin = '0 0 15px 0';
+
+            const botonCerrar = document.createElement('button');
+            botonCerrar.textContent = 'Entendido';
+            botonCerrar.style.cssText = `
+                background: transparent;
+                border: 1px solid #0080ff;
+                color: #0080ff;
+                padding: 8px 16px;
+                cursor: pointer;
+                border-radius: 5px;
+                font-family: 'Inter', sans-serif;
+                transition: all 0.3s ease;
+            `;
+
+            botonCerrar.onmouseover = () => {
+                botonCerrar.style.background = '#0080ff';
+                botonCerrar.style.color = '#000';
+            };
+
+            botonCerrar.onmouseout = () => {
+                botonCerrar.style.background = 'transparent';
+                botonCerrar.style.color = '#0080ff';
+            };
+
+            const overlay = document.createElement('div');
+            overlay.id = 'overlaySeguridad';
+            overlay.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                z-index: 9999;
+            `;
+
+            botonCerrar.onclick = () => {
+                document.body.removeChild(alerta);
+                document.body.removeChild(overlay);
+                alertaVisible = false;
+            };
+
+            alerta.appendChild(mensajeTexto);
+            alerta.appendChild(botonCerrar);
+            document.body.appendChild(overlay);
+            document.body.appendChild(alerta);
+
+            // Mensaje de voz (solo si no hay otro mensaje reproduciéndose)
+            if (!window.speechSynthesis.speaking) {
+                const mensajeVoz = new SpeechSynthesisUtterance();
+                mensajeVoz.text = mensaje;
+                mensajeVoz.lang = 'es-ES';
+                window.speechSynthesis.speak(mensajeVoz);
+            }
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0080ff 0%, #003366 100%);
+            background-attachment: fixed;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Partículas de fondo animadas */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(0, 128, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 128, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(0, 128, 255, 0.05) 0%, transparent 50%);
+            animation: particulas 20s ease-in-out infinite;
+        }
+
+        @keyframes particulas {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-10px) rotate(180deg);
+                opacity: 0.8;
+            }
+        }
+
+        .contenedor-login {
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 128, 255, 0.3);
+            border-radius: 20px;
+            padding: 3rem;
+            width: 90%;
+            max-width: 450px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.3),
+                0 0 30px rgba(0, 128, 255, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            position: relative;
+            z-index: 1;
+            animation: aparecer 0.6s ease-out;
+        }
+
+        .contenedor-login::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(0, 128, 255, 0.05), rgba(0, 51, 102, 0.05));
+            border-radius: 20px;
+            z-index: -1;
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo-icon {
+            font-size: 4rem;
+            color: #0080ff;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(0, 128, 255, 0.5);
+            animation: logoGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes logoGlow {
+            0%, 100% {
+                text-shadow: 0 0 20px rgba(0, 128, 255, 0.5);
+            }
+            50% {
+                text-shadow: 0 0 30px rgba(0, 128, 255, 0.8), 0 0 40px rgba(0, 128, 255, 0.3);
+            }
+        }
+
+        .titulo {
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 0.5rem;
+            font-size: 2.2rem;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .subtitulo {
+            color: #66b3ff;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            font-size: 1rem;
+            font-weight: 400;
+            opacity: 0.9;
+        }
+
+        .grupo-entrada {
+            margin-bottom: 1.8rem;
+            position: relative;
+        }
+
+        .label-entrada {
+            display: block;
+            color: #66b3ff;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .entrada-container {
+            position: relative;
+        }
+
+        .entrada {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 128, 255, 0.3);
+            color: #ffffff;
+            border-radius: 12px;
+            outline: none;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .entrada:focus {
+            border-color: #0080ff;
+            box-shadow: 
+                0 0 0 3px rgba(0, 128, 255, 0.1),
+                0 4px 12px rgba(0, 128, 255, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .entrada::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .icono {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #0080ff;
+            font-size: 1.1rem;
+            z-index: 1;
+        }
+
+        .boton-acceso {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #0080ff 0%, #0066cc 100%);
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 128, 255, 0.3);
+        }
+
+        .boton-acceso::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent,
+                rgba(255, 255, 255, 0.1),
+                transparent
+            );
+            transform: rotate(45deg);
+            transition: 0.5s;
+            opacity: 0;
+        }
+
+        .boton-acceso:hover {
+            background: linear-gradient(135deg, #0066cc 0%, #0080ff 100%);
+            box-shadow: 
+                0 6px 20px rgba(0, 128, 255, 0.4),
+                0 0 30px rgba(0, 128, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .boton-acceso:hover::before {
+            opacity: 1;
+            left: 100%;
+        }
+
+        .boton-acceso:active {
+            transform: translateY(0);
+        }
+
+        .mensaje-error {
+            color: #ff6b6b;
+            text-align: center;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: none;
+            padding: 0.8rem;
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        /* Pantalla de carga */
+        .pantalla-carga {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            backdrop-filter: blur(10px);
+        }
+
+        .candado {
+            font-size: 5rem;
+            color: #0080ff;
+            margin-bottom: 2rem;
+            animation: brilloCandado 2s infinite;
+        }
+
+        @keyframes brilloCandado {
+            0% { 
+                text-shadow: 0 0 10px rgba(0, 128, 255, 0.5);
+                transform: scale(1);
+            }
+            50% { 
+                text-shadow: 0 0 30px rgba(0, 128, 255, 0.8), 0 0 40px rgba(0, 128, 255, 0.3);
+                transform: scale(1.05);
+            }
+            100% { 
+                text-shadow: 0 0 10px rgba(0, 128, 255, 0.5);
+                transform: scale(1);
+            }
+        }
+
+        .terminal {
+            font-family: 'Inter', monospace;
+            color: #0080ff;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 128, 255, 0.3);
+            width: 90%;
+            max-width: 600px;
+            margin-bottom: 2rem;
+            height: 200px;
+            overflow-y: auto;
+            backdrop-filter: blur(10px);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .mensaje-carga {
+            color: #0080ff;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 500;
+            text-align: center;
+            text-shadow: 0 0 10px rgba(0, 128, 255, 0.5);
+        }
+
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(0, 128, 255, 0.3);
+            border-top: 3px solid #0080ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 1rem auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            body {
+                height: 100vh;
+                padding: 1rem 0;
+            }
+
+            .contenedor-login {
+                width: 95%;
+                padding: 2rem;
+                margin: 0;
+                max-height: 95vh;
+            }
+
+            .titulo {
+                font-size: 1.8rem;
+            }
+
+            .logo-icon {
+                font-size: 3rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .logo-container {
+                margin-bottom: 1.5rem;
+            }
+
+            .grupo-entrada {
+                margin-bottom: 1.5rem;
+            }
+
+            .terminal {
+                width: 95%;
+                height: 150px;
+                padding: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                height: 100vh;
+                padding: 0.5rem 0;
+            }
+
+            .contenedor-login {
+                padding: 1.5rem;
+                width: 95%;
+                max-height: 98vh;
+            }
+
+            .titulo {
+                font-size: 1.6rem;
+                margin-bottom: 0.3rem;
+            }
+
+            .subtitulo {
+                font-size: 0.9rem;
+                margin-bottom: 2rem;
+            }
+
+            .logo-icon {
+                font-size: 2.5rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .logo-container {
+                margin-bottom: 1rem;
+            }
+
+            .grupo-entrada {
+                margin-bottom: 1.2rem;
+            }
+
+            .entrada {
+                padding: 0.9rem 0.9rem 0.9rem 2.8rem;
+                font-size: 0.95rem;
+            }
+
+            .boton-acceso {
+                padding: 0.9rem;
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .contenedor-login {
+                padding: 1rem;
+                width: 98%;
+            }
+
+            .titulo {
+                font-size: 1.4rem;
+            }
+
+            .logo-icon {
+                font-size: 2rem;
+            }
+
+            .entrada {
+                padding: 0.8rem 0.8rem 0.8rem 2.5rem;
+                font-size: 0.9rem;
+            }
+
+            .boton-acceso {
+                padding: 0.8rem;
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Animaciones */
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .entrada-container {
+            animation: slideIn 0.6s ease-out;
+        }
+
+        .entrada-container:nth-child(1) { animation-delay: 0.1s; }
+        .entrada-container:nth-child(2) { animation-delay: 0.2s; }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Mejoras de accesibilidad */
+        .entrada:focus,
+        .boton-acceso:focus {
+            outline: 2px solid rgba(0, 128, 255, 0.5);
+            outline-offset: 2px;
+        }
+
+        /* Efectos hover para dispositivos táctiles */
+        @media (hover: none) {
+            html, body {
+                height: 100vh;
+                overflow: hidden;
+                position: fixed;
+                width: 100%;
+            }
+
+            .boton-acceso:hover {
+                transform: none;
+            }
+            
+            .boton-acceso:active {
+                transform: scale(0.98);
+                background: linear-gradient(135deg, #0066cc 0%, #0080ff 100%);
+            }
+        }
+
+        /* Evitar scroll en dispositivos móviles */
+        @media screen and (max-width: 768px) {
+            html, body {
+                height: 100vh;
+                overflow: hidden;
+                position: fixed;
+                width: 100%;
+            }
+
+            body {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor-login">
+        <div class="logo-container">
+            <div class="logo-icon">
+                <i class="fab fa-python"></i>
+            </div>
+            <h1 class="titulo">Curso de Python</h1>
+            <p class="subtitulo">Accede a tu plataforma de aprendizaje</p>
+        </div>
+        
+        <form id="formularioLogin" onsubmit="return validarLogin(event)">
+            <div class="grupo-entrada">
+                <label for="usuario" class="label-entrada">Usuario</label>
+                <div class="entrada-container">
+                    <i class="fas fa-user icono"></i>
+                    <input type="text" class="entrada" id="usuario" placeholder="Ingresa tu usuario" required>
+                </div>
+            </div>
+            
+            <div class="grupo-entrada">
+                <label for="contrasena" class="label-entrada">Contraseña</label>
+                <div class="entrada-container">
+                    <i class="fas fa-lock icono"></i>
+                    <input type="password" class="entrada" id="contrasena" placeholder="Ingresa tu contraseña" required>
+                </div>
+            </div>
+            
+            <p class="mensaje-error" id="mensajeError">
+                <i class="fas fa-exclamation-triangle"></i>
+                Usuario o contraseña incorrectos
+            </p>
+            
+            <button type="submit" class="boton-acceso">
+                <i class="fas fa-sign-in-alt"></i>
+                Iniciar Sesión
+            </button>
+        </form>
+    </div>
+
+    <div class="pantalla-carga" id="pantallaCarga">
+        <i class="fas fa-lock candado" id="iconoCandado"></i>
+        <div class="loading-spinner"></div>
+        <div class="terminal" id="terminal"></div>
+        <div class="mensaje-carga" id="mensajeCarga">Iniciando sesión...</div>
+    </div>
+
+    <script>
+    async function validarLogin(event) {
+        event.preventDefault();
+        
+        const usuario = document.getElementById('usuario').value;
+        const contrasena = document.getElementById('contrasena').value;
+        const pantallaCarga = document.getElementById('pantallaCarga');
+        const terminal = document.getElementById('terminal');
+        const iconoCandado = document.getElementById('iconoCandado');
+        const mensajeError = document.getElementById('mensajeError');
+
+        try {
+            const response = await fetch('./data/usuarios.json');
+            const data = await response.json();
+            
+            const usuarioValido = data.usuarios.find(u => 
+                u.usuario === usuario && u.contrasena === contrasena
+            );
+
+            if (usuarioValido) {
+                mensajeError.style.display = 'none';
+                pantallaCarga.style.display = 'flex';
+                
+                // Mensaje de voz de bienvenida
+                const mensajeVoz = new SpeechSynthesisUtterance();
+                mensajeVoz.text = `Bienvenido al curso de Python, ${usuario}`;
+                mensajeVoz.lang = 'es-ES';
+                mensajeVoz.volume = 1;
+                mensajeVoz.pitch = 1;
+                mensajeVoz.rate = 0.9;
+                
+                // Simulación de terminal mejorada
+                const mensajes = [
+                    "🔐 Iniciando proceso de autenticación...",
+                    "👤 Verificando credenciales de usuario...",
+                    "✅ Credenciales validadas correctamente",
+                    `🎓 Acceso concedido para: ${usuario}`,
+                    "📚 Cargando contenido del curso de Python...",
+                    "🚀 Preparando interfaz del sistema...",
+                    `🎉 ¡Bienvenido al curso, ${usuario}!`
+                ];
+
+                terminal.innerHTML = '';
+                for (let i = 0; i < mensajes.length; i++) {
+                    await new Promise(resolve => setTimeout(resolve, 800));
+                    terminal.innerHTML += `<div style="margin-bottom: 0.5rem;">${mensajes[i]}</div>`;
+                    terminal.scrollTop = terminal.scrollHeight;
+                }
+
+                // Reproducir mensaje de voz
+                window.speechSynthesis.speak(mensajeVoz);
+
+                // Cambiar el icono del candado a desbloqueado
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                iconoCandado.classList.remove('fa-lock');
+                iconoCandado.classList.add('fa-lock-open');
+                iconoCandado.style.color = '#00ff88';
+
+                // Redireccionar
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                window.location.href = 'secciones/home.html?usuario=' + encodeURIComponent(usuario);
+            } else {
+                mensajeError.style.display = 'block';
+                
+                // Efecto de shake en el formulario
+                const contenedor = document.querySelector('.contenedor-login');
+                contenedor.style.animation = 'shake 0.5s ease-in-out';
+                setTimeout(() => {
+                    contenedor.style.animation = '';
+                }, 500);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            mensajeError.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Error al conectar con el servidor';
+            mensajeError.style.display = 'block';
+        }
+
+        return false;
+    }
+
+    // Animación de shake para errores
+    const shakeKeyframes = `
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+    `;
+    const style = document.createElement('style');
+    style.textContent = shakeKeyframes;
+    document.head.appendChild(style);
+
+    // Efectos de entrada para los elementos
+    window.addEventListener('load', function() {
+        const contenedor = document.querySelector('.contenedor-login');
+        contenedor.style.opacity = '0';
+        contenedor.style.transform = 'translateY(30px) scale(0.95)';
+        
+        setTimeout(() => {
+            contenedor.style.transition = 'all 0.6s ease-out';
+            contenedor.style.opacity = '1';
+            contenedor.style.transform = 'translateY(0) scale(1)';
+        }, 100);
+    });
+
+    // Mensaje de voz de bienvenida inicial
+    window.addEventListener('DOMContentLoaded', function() {
+        setTimeout(() => {
+            const mensajeVoz = new SpeechSynthesisUtterance();
+            mensajeVoz.text = "Bienvenido al curso de Python. Por favor, ingresa tus credenciales para continuar.";
+            mensajeVoz.lang = 'es-ES';
+            mensajeVoz.volume = 0.8;
+            mensajeVoz.rate = 0.9;
+            window.speechSynthesis.speak(mensajeVoz);
+        }, 1000);
+    });
+    </script>
+</body>
+</html>

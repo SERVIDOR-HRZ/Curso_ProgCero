@@ -1,0 +1,84 @@
+{
+    "semanas": [
+        {
+            "numero": 1,
+            "grabaciones": [
+                {
+                    "dia": "Día 1",
+                    "titulo": "Inducción (1h)",
+                    "link": "https://www.youtube.com/embed/-bFATR4SKPo?si=MpQDKCKQYOkR5OdC"
+                },
+                {
+                    "dia": "Día 2", 
+                    "titulo": "Inducción (1h)",
+                    "link": "https://www.youtube.com/embed/-bFATR4SKPo?si=MpQDKCKQYOkR5OdC"
+                },
+                {
+                    "dia": "Día 3",
+                    "titulo": "Módulo 1 – Introducción + lógica (2h)",
+                    "link": "https://www.youtube.com/embed/-bFATR4SKPo?si=MpQDKCKQYOkR5OdC"
+                },
+                {
+                    "dia": "Día 4",
+                    "titulo": "Módulo 1 – Variables, IDE, ejercicios (2h)",
+                    "link": "https://www.youtube.com/embed/-bFATR4SKPo?si=MpQDKCKQYOkR5OdC"
+                },
+                {
+                    "dia": "Día 5",
+                    "titulo": "Módulo 2 – Condicionales (2h)",
+                    "link": "https://www.youtube.com/embed/-bFATR4SKPo?si=MpQDKCKQYOkR5OdC"
+                },
+                {
+                    "dia": "Día 6",
+                    "titulo": "Módulo 2 – Bucles + ejercicios (2h)",
+                    "link": "https://www.youtube.com/embed/-bFATR4SKPo?si=MpQDKCKQYOkR5OdC"
+                },
+                {
+                    "dia": "Día 7",
+                    "titulo": "Módulo 3 – Listas, métodos (2h)",
+                    "link": "https://www.youtube.com/embed/-bFATR4SKPo?si=MpQDKCKQYOkR5OdC"
+                }
+            ]
+        },
+        {
+            "numero": 2,
+            "grabaciones": [
+                {
+                    "dia": "Día 8",
+                    "titulo": "Módulo 3 – Diccionarios, sets, iteraciones (2h)",
+                    "link": "https://www.youtube.com/embed/-bFATR4SKPo?si=MpQDKCKQYOkR5OdC"
+                },
+                {
+                    "dia": "Día 9",
+                    "titulo": "Módulo 4 – Funciones básicas (2h)",
+                    "link": "https://www.youtube.com/embed/-bFATR4SKPo?si=MpQDKCKQYOkR5OdC"
+                },
+                {
+                    "dia": "Día 10",
+                    "titulo": "Módulo 4 – Ámbito, librerías + inicio POO (1h + 1h)",
+                    "link": "https://www.youtube.com/embed/-bFATR4SKPo?si=MpQDKCKQYOkR5OdC"
+                },
+                {
+                    "dia": "Día 11",
+                    "titulo": "Módulo 5 – Clases, objetos, encapsulación (2h)",
+                    "link": "https://www.youtube.com/embed/-bFATR4SKPo?si=MpQDKCKQYOkR5OdC"
+                },
+                {
+                    "dia": "Día 12",
+                    "titulo": "Módulo 5 – Herencia, polimorfismo, ejercicios (2h)",
+                    "link": "https://www.youtube.com/embed/-bFATR4SKPo?si=MpQDKCKQYOkR5OdC"
+                },
+                {
+                    "dia": "Día 13",
+                    "titulo": "Módulo 6 – Archivos + errores (2h)",
+                    "link": "https://www.youtube.com/embed/-bFATR4SKPo?si=MpQDKCKQYOkR5OdC"
+                },
+                {
+                    "dia": "Día 14",
+                    "titulo": "Módulo 7 – Proyecto final (2h)",
+                    "link": "https://www.youtube.com/embed/-bFATR4SKPo?si=MpQDKCKQYOkR5OdC"
+                }
+            ]
+        }
+    ]
+} 
