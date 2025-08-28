@@ -695,7 +695,7 @@
                 
                 // Mensaje de voz de bienvenida
                 const mensajeVoz = new SpeechSynthesisUtterance();
-                mensajeVoz.text = `Bienvenido al curso de Python, ${usuario}`;
+                mensajeVoz.text = `Bienvenido al curso de Python, ${usuarioValido.nombre}`;
                 mensajeVoz.lang = 'es-ES';
                 mensajeVoz.volume = 1;
                 mensajeVoz.pitch = 1;
@@ -706,10 +706,10 @@
                     "🔐 Iniciando proceso de autenticación...",
                     "👤 Verificando credenciales de usuario...",
                     "✅ Credenciales validadas correctamente",
-                    `🎓 Acceso concedido para: ${usuario}`,
+                    `🎓 Acceso concedido para: ${usuarioValido.nombre}`,
                     "📚 Cargando contenido del curso de Python...",
                     "🚀 Preparando interfaz del sistema...",
-                    `🎉 ¡Bienvenido al curso, ${usuario}!`
+                    `🎉 ¡Bienvenido al curso, ${usuarioValido.nombre}!`
                 ];
 
                 terminal.innerHTML = '';
@@ -730,7 +730,7 @@
 
                 // Redireccionar
                 await new Promise(resolve => setTimeout(resolve, 2000));
-                window.location.href = 'secciones/home.html?usuario=' + encodeURIComponent(usuario);
+                window.location.href = 'secciones/home.html?usuario=' + encodeURIComponent(usuario) + '&nombre=' + encodeURIComponent(usuarioValido.nombre);
             } else {
                 mensajeError.style.display = 'block';
                 

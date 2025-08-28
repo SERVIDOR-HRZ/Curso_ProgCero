@@ -664,15 +664,19 @@
     <script>
         let linkMaterialActual = '';
 
-        function abrirMaterial(link, usuario) {
+        function abrirMaterial(link, nombreUsuario) {
             linkMaterialActual = link;
-            document.getElementById('usuarioCorreo').textContent = usuario;
+            const params = new URLSearchParams(window.location.search);
+            const usuario = params.get('usuario');
+            const correoMostrar = usuario || nombreUsuario;
+            
+            document.getElementById('usuarioCorreo').textContent = correoMostrar;
             document.getElementById('overlay').style.display = 'block';
             document.getElementById('alertaModal').style.display = 'block';
 
             // Mensaje de voz
             const mensajeVoz = new SpeechSynthesisUtterance();
-            mensajeVoz.text = `El material está disponible exclusivamente para ti con el correo registrado: ${usuario}`;
+            mensajeVoz.text = `El material está disponible exclusivamente para ti con el correo registrado: ${correoMostrar}`;
             mensajeVoz.lang = 'es-ES';
             window.speechSynthesis.speak(mensajeVoz);
         }
@@ -770,8 +774,12 @@
         window.onload = function() {
             const params = new URLSearchParams(window.location.search);
             const usuario = params.get('usuario');
+            const nombre = params.get('nombre');
+            
             if (usuario) {
-                document.getElementById('nombreUsuario').textContent = usuario;
+                // Mostrar el nombre completo si está disponible, sino mostrar el usuario
+                const nombreMostrar = nombre || usuario;
+                document.getElementById('nombreUsuario').textContent = nombreMostrar;
                 
                 const mensajeVoz = new SpeechSynthesisUtterance();
                 mensajeVoz.text = `Bienvenido al curso de Python, a continuación podrás encontrar las grabaciones de las clases y material de estudio.`;

@@ -2,91 +2,153 @@
     "usuarios": [
         {
             "usuario": "Andres",
-            "contrasena": "1724"
+            "contrasena": "1724",
+            "nombre": "Andrés"
         },
         {
-            "usuario": "sergio.sabogal0527@gmail.com",
-            "contrasena": "CiberSergio27!"
+            "usuario": "miguel-hernandez@progcero.pro",
+            "contrasena": "MH2797</>3233",
+            "nombre": "Miguel Ángel Hernández Orozco"
         },
         {
-            "usuario": "frandavhg@gmail.com",
-            "contrasena": "CiberFranHG!"
+            "usuario": "andres-sanchez@progcero.pro",
+            "contrasena": "AS5038</>3202",
+            "nombre": "Andrés Felipe Sánchez Betancourt"
         },
         {
-            "usuario": "salamanca.andres@correounivalle.edu.co",
-            "contrasena": "CiberAndresUV!"
+            "usuario": "valerie-herrera@progcero.pro",
+            "contrasena": "VH3896</>5183",
+            "nombre": "Valerie Herrera Alemán"
         },
         {
-            "usuario": "yoniervasquez98@gmail.com",
-            "contrasena": "CiberYoni98!"
+            "usuario": "sara-bolivar@progcero.pro",
+            "contrasena": "SB4675</>4435",
+            "nombre": "Sara Bolívar Tovar"
         },
         {
-            "usuario": "martinmenacho1305@gmail.com",
-            "contrasena": "CiberMartin05!"
+            "usuario": "emily-soto@progcero.pro",
+            "contrasena": "ES8471</>5430",
+            "nombre": "Emily Alejandra Soto González"
         },
         {
-            "usuario": "isasdaniel64@gmail.com",
-            "contrasena": "CiberDaniel64!"
+            "usuario": "brandon-rodriguez@progcero.pro",
+            "contrasena": "BR9460</>9470",
+            "nombre": "Brandon Mauricio Rodríguez Villa"
         },
         {
-            "usuario": "irwincruz134@gmail.com",
-            "contrasena": "CiberIrwin34!"
+            "usuario": "karina-leal@progcero.pro",
+            "contrasena": "KL0441</>2325",
+            "nombre": "Karina Alexandra Leal Herrera"
         },
         {
-            "usuario": "cuentasnetflix005@gmail.com",
-            "contrasena": "CiberNetflix05!"
+            "usuario": "luis-achicanoy@progcero.pro",
+            "contrasena": "LA7355</>9191",
+            "nombre": "Luis Daniel Achicanoy Quintero"
         },
         {
-            "usuario": "jdnarvaez@udenar.edu.co",
-            "contrasena": "CiberNarvaezUD!"
+            "usuario": "melanny-cardona@progcero.pro",
+            "contrasena": "MC0025</>9175",
+            "nombre": "Melanny Isabel Cardona Bermúdez"
         },
         {
-            "usuario": "ajmg2004cbta3@gmail.com",
-            "contrasena": "CiberAJMG04!"
+            "usuario": "mateo-tordecilla@progcero.pro",
+            "contrasena": "MT5725</>0743",
+            "nombre": "Mateo David Tordecilla Puche"
         },
         {
-            "usuario": "caicedodiego15@gmail.com",
-            "contrasena": "CiberDiego15!"
+            "usuario": "esteban-salinas@progcero.pro",
+            "contrasena": "ES0773</>1553",
+            "nombre": "Esteban David Salinas García"
         },
         {
-            "usuario": "camilahenao75@gmail.com",
-            "contrasena": "CiberCamila75!"
+            "usuario": "daniel-molina@progcero.pro",
+            "contrasena": "DM8035</>6228",
+            "nombre": "Daniel Santiago Molina Martínez"
         },
         {
-            "usuario": "marquezreyesjesusdavid@gmail.com",
-            "contrasena": "CiberJesusDavid!"
+            "usuario": "diego-velasquez@progcero.pro",
+            "contrasena": "DV5452</>6361",
+            "nombre": "Diego Alejandro Velásquez Sánchez"
         },
         {
-            "usuario": "santiago2018sv@gmail.com",
-            "contrasena": "CiberSanti18!"
+            "usuario": "santiago-cisneros@progcero.pro",
+            "contrasena": "SC1288</>2695",
+            "nombre": "Santiago Cisneros Insuasti"
         },
         {
-            "usuario": "andresfelipe29portillo@gmail.com",
-            "contrasena": "CiberFelipe29!"
+            "usuario": "jaider-blanco@progcero.pro",
+            "contrasena": "JB2927</>4248",
+            "nombre": "Jaider Manuel Blanco Vivanco"
         },
         {
-            "usuario": "jaquez498@gmail.com",
-            "contrasena": "CiberJaquez98!"
+            "usuario": "jaider-blanco2@progcero.pro",
+            "contrasena": "JB2910</>4246",
+            "nombre": "Jaider Santiago Blanco Vivanco"
         },
         {
-            "usuario": "yglesiasmiguel790@gmail.com",
-            "contrasena": "CiberMiguel90!"
+            "usuario": "jhon-rodriguez@progcero.pro",
+            "contrasena": "JR8806</>3218",
+            "nombre": "Jhon Carlos Rodríguez Mendoza"
         },
         {
-            "usuario": "carh725@hotmail.com",
-            "contrasena": "CiberCesar72!"
+            "usuario": "valentina-tole@progcero.pro",
+            "contrasena": "VT8490</>4623",
+            "nombre": "Valentina Tole Silva"
         },
         {
-            "usuario": "gecudcop@gmail.com", 
-            "contrasena": "CiberAngel99!"
+            "usuario": "dayarys-jimenez@progcero.pro",
+            "contrasena": "DJ2900</>3860",
+            "nombre": "Dayarys Jiménez Atencia"
         },
         {
-            "usuario": "diegogamboa2tr@gmail.com",
-            "contrasena": "CiberDiego98!"
+            "usuario": "wilder-mendez@progcero.pro",
+            "contrasena": "WM6441</>6105",
+            "nombre": "Wilder Estiven Méndez Montoya"
         },
         {
-            "usuario": "ricardoatencialuismiguel@gmail.com",
-            "contrasena": "CiberLuis30!"
+            "usuario": "valerin-bustos@progcero.pro",
+            "contrasena": "VB5099</>4627",
+            "nombre": "Valerin Dayana Bustos Caicedo"
+        },
+        {
+            "usuario": "luz-escorcia@progcero.pro",
+            "contrasena": "LE4052</>2130",
+            "nombre": "Luz Adriana Escorcia Villalobos"
+        },
+        {
+            "usuario": "azucena-vargas@progcero.pro",
+            "contrasena": "AV6962</>9222",
+            "nombre": "Azucena Vargas Giraldo"
+        },
+        {
+            "usuario": "juan-trujillo@progcero.pro",
+            "contrasena": "JT8187</>2088",
+            "nombre": "Juan Diego Trujillo Hernández"
+        },
+        {
+            "usuario": "darcy-manunga@progcero.pro",
+            "contrasena": "DM3531</>3511",
+            "nombre": "Darcy Johana Mañunga Carvajal"
+        },
+        {
+            "usuario": "katy-teran@progcero.pro",
+            "contrasena": "KT5963</>8689",
+            "nombre": "Katy Julieth Terán Mercado"
+        },
+        {
+            "usuario": "isabella-montoya@progcero.pro",
+            "contrasena": "IM2604</>1864",
+            "nombre": "Isabella Montoya Vásquez"
+        },
+        {
+            "usuario": "tomas-osorio@progcero.pro",
+            "contrasena": "TO3445</>4015",
+            "nombre": "Tomás Santiago Osorio Puello"
+        },
+        {
+            "usuario": "santiago-colon@progcero.pro",
+            "contrasena": "SC3258</>7448",
+            "nombre": "Santiago Aleimer Colón Solar"
         }
     ]
 }
