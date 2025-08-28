@@ -6,6 +6,11 @@
             "nombre": "Andrés"
         },
         {
+            "usuario": "daniel@seamosgenios.com",
+            "contrasena": "DANIEL</>1234",
+            "nombre": "Daniel"
+        },
+        {
             "usuario": "miguel-hernandez@progcero.pro",
             "contrasena": "MH2797</>3233",
             "nombre": "Miguel Ángel Hernández Orozco"
