@@ -1,198 +1,265 @@
 {
     "usuarios": [
-        
         {
             "usuario": "Andres",
             "contrasena": "1724",
             "nombre": "Andrés"
         },
-    
-        {
-            "usuario": "andres-sanchez@progcero.pro",
-            "contrasena": "AS5038</>3202",
-            "nombre": "Andrés Felipe Sánchez Betancourt"
-        },
-        
-        {
-            "usuario": "azucena-vargas@progcero.pro",
-            "contrasena": "AV6962</>9222",
-            "nombre": "Azucena Vargas Giraldo"
-        },
-    
-        {
-            "usuario": "brandon-rodriguez@progcero.pro",
-            "contrasena": "BR9460</>9470",
-            "nombre": "Brandon Mauricio Rodríguez Villa"
-        },
-    
         {
             "usuario": "daniel@seamosgenios.com",
             "contrasena": "DANIEL</>1234",
             "nombre": "Daniel"
         },
-    
+        {
+            "usuario": "andres-sanchez@progcero.pro",
+            "contrasena": "AS5038</>3202",
+            "nombre": "Andrés Felipe Sánchez Betancourt"
+        },
+        {
+            "usuario": "azucena-vargas@progcero.pro",
+            "contrasena": "AV6962</>9222",
+            "nombre": "Azucena Vargas Giraldo"
+        },
+        {
+            "usuario": "brandon-rodriguez@progcero.pro",
+            "contrasena": "BR9460</>9470",
+            "nombre": "Brandon Mauricio Rodríguez Villa"
+        },
+        {
+            "usuario": "daniel-motta@progcero.pro",
+            "contrasena": "DM3991</>4161",
+            "nombre": "Daniel Felipe Motta Piloneta"
+        },
         {
             "usuario": "daniel-molina@progcero.pro",
             "contrasena": "DM8035</>6228",
             "nombre": "Daniel Santiago Molina Martínez"
         },
-        
         {
             "usuario": "darcy-manunga@progcero.pro",
             "contrasena": "DM3531</>3511",
             "nombre": "Darcy Johana Mañunga Carvajal"
         },
-        
         {
             "usuario": "dayarys-jimenez@progcero.pro",
             "contrasena": "DJ2900</>3860",
             "nombre": "Dayarys Jiménez Atencia"
         },
-    
         {
             "usuario": "diego-velasquez@progcero.pro",
             "contrasena": "DV5452</>6361",
             "nombre": "Diego Alejandro Velásquez Sánchez"
         },
-    
+        {
+            "usuario": "edgar-robayo@progcero.pro",
+            "contrasena": "ER3322</>3367",
+            "nombre": "Edgar Manuel Robayo Hernandez"
+        },
         {
             "usuario": "emily-soto@progcero.pro",
             "contrasena": "ES8471</>5430",
             "nombre": "Emily Alejandra Soto González"
         },
-        
+        {
+            "usuario": "emily-arrieta@progcero.pro",
+            "contrasena": "EA3235</>2963",
+            "nombre": "Emily Arrieta Castro"
+        },
         {
             "usuario": "esteban-salinas@progcero.pro",
             "contrasena": "ES0773</>1553",
             "nombre": "Esteban David Salinas García"
         },
-        
         {
             "usuario": "isabella-montoya@progcero.pro",
             "contrasena": "IM2604</>1864",
             "nombre": "Isabella Montoya Vásquez"
         },
-        
         {
             "usuario": "jaider-blanco@progcero.pro",
             "contrasena": "JB2927</>4248",
             "nombre": "Jaider Manuel Blanco Vivanco"
         },
-        
         {
             "usuario": "jaider-blanco2@progcero.pro",
             "contrasena": "JB2910</>4246",
             "nombre": "Jaider Santiago Blanco Vivanco"
         },
-        
         {
             "usuario": "jhon-rodriguez@progcero.pro",
             "contrasena": "JR8806</>3218",
             "nombre": "Jhon Carlos Rodríguez Mendoza"
         },
-    
+        {
+            "usuario": "joel-vergara@progcero.pro",
+            "contrasena": "JV0946</>4307",
+            "nombre": "Joel Vergara Carrasco"
+        },
+        {
+            "usuario": "jose-gutierrez@progcero.pro",
+            "contrasena": "JG3315</>9690",
+            "nombre": "José Alejandro Gutierrez Quintero"
+        },
+        {
+            "usuario": "juan-hernandez@progcero.pro",
+            "contrasena": "JH9558</>8951",
+            "nombre": "Juan David Hernández Bernal"
+        },
         {
             "usuario": "juan-trujillo@progcero.pro",
             "contrasena": "JT8187</>2088",
             "nombre": "Juan Diego Trujillo Hernández"
         },
-        
+        {
+            "usuario": "juan-rodriguez@progcero.pro",
+            "contrasena": "JR3862</>8534",
+            "nombre": "Juan Sebastian Rodriguez Mendoza"
+        },
         {
             "usuario": "julian-nunez@progcero.pro",
             "contrasena": "JN2418</>1594",
             "nombre": "Julian Jeffrey Nuñez Cañas"
         },
-        
+        {
+            "usuario": "julieth-mongue@progcero.pro",
+            "contrasena": "JM5168</>2010",
+            "nombre": "Julieth Andreina Mongue Tueros"
+        },
         {
             "usuario": "karina-leal@progcero.pro",
             "contrasena": "KL0441</>2325",
             "nombre": "Karina Alexandra Leal Herrera"
         },
-        
         {
             "usuario": "katy-teran@progcero.pro",
             "contrasena": "KT5963</>8689",
             "nombre": "Katy Julieth Terán Mercado"
         },
-        
+        {
+            "usuario": "kevin-cardona@progcero.pro",
+            "contrasena": "KC4746</>5225",
+            "nombre": "Kevin Cardona Betancur"
+        },
+        {
+            "usuario": "lina-cuatin@progcero.pro",
+            "contrasena": "LC3392</>9503",
+            "nombre": "Lina María Cuatin Tobar"
+        },
         {
             "usuario": "luis-achicanoy@progcero.pro",
             "contrasena": "LA7355</>9191",
             "nombre": "Luis Daniel Achicanoy Quintero"
         },
-        
         {
             "usuario": "luz-escorcia@progcero.pro",
             "contrasena": "LE4052</>2130",
             "nombre": "Luz Adriana Escorcia Villalobos"
         },
-        
+        {
+            "usuario": "maira-tovar@progcero.pro",
+            "contrasena": "MT0940</>3138",
+            "nombre": "Maira Alejandra Tovar García"
+        },
+        {
+            "usuario": "maria-alvarez@progcero.pro",
+            "contrasena": "MA8766</>8460",
+            "nombre": "Maria Fernanda Álvarez Delgado"
+        },
+        {
+            "usuario": "maryangel-zequeira@progcero.pro",
+            "contrasena": "MZ7880</>6517",
+            "nombre": "Maryangel Zequeira Chona"
+        },
         {
             "usuario": "mateo-tordecilla@progcero.pro",
             "contrasena": "MT5725</>0743",
             "nombre": "Mateo David Tordecilla Puche"
         },
-        
         {
             "usuario": "melanny-cardona@progcero.pro",
             "contrasena": "MC0025</>9175",
             "nombre": "Melanny Isabel Cardona Bermúdez"
         },
-    
+        {
+            "usuario": "miguel-cutiva@progcero.pro",
+            "contrasena": "MC1388</>6884",
+            "nombre": "Miguel Ángel Cutiva"
+        },
         {
             "usuario": "miguel-hernandez@progcero.pro",
             "contrasena": "MH2797</>3233",
             "nombre": "Miguel Ángel Hernández Orozco"
         },
-
+        {
+            "usuario": "natalia-vega@progcero.pro",
+            "contrasena": "NV3514</>4486",
+            "nombre": "Natalia Vega Hernandez"
+        },
+        {
+            "usuario": "neider-vargas@progcero.pro",
+            "contrasena": "NV6466</>2517",
+            "nombre": "Neider Sthiv Vargas Chaparro"
+        },
         {
             "usuario": "santiago-colon@progcero.pro",
             "contrasena": "SC3258</>7448",
             "nombre": "Santiago Aleimer Colón Solar"
         },
-    
         {
             "usuario": "santiago-cisneros@progcero.pro",
             "contrasena": "SC1288</>2695",
             "nombre": "Santiago Cisneros Insuasti"
         },
-
         {
             "usuario": "sara-bolivar@progcero.pro",
             "contrasena": "SB4675</>4435",
             "nombre": "Sara Bolívar Tovar"
         },
-    
         {
             "usuario": "tatiana-delacruz@progcero.pro",
             "contrasena": "TD0118</>6396",
             "nombre": "Tatiana De La Cruz"
         },
-
+        {
+            "usuario": "thomas-lopez@progcero.pro",
+            "contrasena": "TL3286</>3662",
+            "nombre": "Thomas Lopez Mancera"
+        },
         {
             "usuario": "tomas-osorio@progcero.pro",
             "contrasena": "TO3445</>4015",
             "nombre": "Tomás Santiago Osorio Puello"
         },
-    
+        {
+            "usuario": "valeria-cardenas@progcero.pro",
+            "contrasena": "VC1431</>1108",
+            "nombre": "Valeria Cárdenas Lozano"
+        },
+        {
+            "usuario": "valeria-vargas@progcero.pro",
+            "contrasena": "VV8176</>5162",
+            "nombre": "Valeria María Vargas Yoly"
+        },
         {
             "usuario": "valerie-herrera@progcero.pro",
             "contrasena": "VH3896</>5183",
             "nombre": "Valerie Herrera Alemán"
         },
-
         {
             "usuario": "valentina-tole@progcero.pro",
             "contrasena": "VT8490</>4623",
             "nombre": "Valentina Tole Silva"
         },
-    
+        {
+            "usuario": "valentina-vallejo@progcero.pro",
+            "contrasena": "VV1007</>3015",
+            "nombre": "Valentina Vallejo Torres"
+        },
         {
             "usuario": "valerin-bustos@progcero.pro",
             "contrasena": "VB5099</>4627",
             "nombre": "Valerin Dayana Bustos Caicedo"
         },
-    
         {
             "usuario": "wilder-mendez@progcero.pro",
             "contrasena": "WM6441</>6105",
@@ -200,5 +267,4 @@
         }
     ]
 }
-
 
