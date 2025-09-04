@@ -21,12 +21,12 @@
                 {   
                     "dia": "Día 4",
                     "titulo": "Material Módulo 1 - Variables, IDE, ejercicios",
-                    "link": ""
+                    "link": "https://drive.google.com/drive/folders/1i2_SgPXtE7RTvbgXFg0RURJL7uDusboi?usp=drive_link"
                 },
                 {
                     "dia": "Día 5",
                     "titulo": "Material Módulo 2 - Condicionales",
-                    "link": ""
+                    "link": "https://drive.google.com/drive/folders/1MA3d0HfzAUrvDq_LQaNRlyTX7J2EO-Yl?usp=drive_link"
                 },
                 {
                     "dia": "Día 6",
@@ -81,4 +81,5 @@
             ]
         }
     ]
+
 } 
